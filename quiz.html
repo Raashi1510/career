@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Career Quiz</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <h1>Career Quiz</h1>
+  <form id="quiz-form">
+    <!-- Dynamically generate 30 questions -->
+    <div class="question">
+      <p>1. Are you interested in web development?</p>
+      <label><input type="radio" name="q1" value="1"> Yes</label>
+      <label><input type="radio" name="q1" value="0"> No</label>
+    </div>
+    <div class="question">
+      <p>2. Do you enjoy working with data and analytics?</p>
+      <label><input type="radio" name="q2" value="1"> Yes</label>
+      <label><input type="radio" name="q2" value="0"> No</label>
+    </div>
+    <!-- Add more questions here -->
+    <button type="submit">Submit</button>
+  </form>
+  <script src="js/app.js"></script>
+</body>
+</html>

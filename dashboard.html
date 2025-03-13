@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attractive Navbar</title>
+  <link rel="stylesheet" href="1.css">
+</head>
+<body>
+  <nav class="navbar">
+    <ul class="navbar-list">
+      <li><a href="#" class="navbar-link" id="gmail"></a></li>
+      <li><a href="#" class="navbar-link">Check Your Intrest</a></li>
+      <li><a href="#" class="navbar-link">Ask AI</a></li>
+      <li><a href="#" class="navbar-link">Upcoming Tasks</a></li>
+      <li><a href="#" class="navbar-link">View Roadmap</a></li>
+      <li><a href="#" class="navbar-link logout" id="logout">Logout</a></li>
+    </ul>
+  </nav>
+  <script>
+    const logout = document.getElementById("logout");
+    logout.addEventListener("click",function(){
+      window.location.href = "2.html"
+    })
+  </script>
+</body>
+</html>
