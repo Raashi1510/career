@@ -1,14 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Results</title>
-  <link rel="stylesheet" href="css/2.css"> <!-- Link to your CSS file -->
-</head>
-<body>
-  <h1>Recommended Courses</h1>
-  <div id="results"></div>
-  <script src="js/2.js"></script> <!-- Link to your JavaScript file -->
-</body>
-</html>
+from flask import Flask, render_template, request
+import pandas as pd
+
+app = Flask(__name__)
+
+# Load course data
+courses_df = pd.read_csv('course_data.csv')
+
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    if request.method == 'POST':
+        # Get form data
+        topic = request.form['topic']
+        skill_level = request.form['skill_level']
+        # ... get other form data ...
+
+        # Filter courses based on user input
+        filtered_courses = courses_df[
+            (courses_df['Topic'] == topic) &
+            (courses_df['Skill Level'] == skill_level)
+        ] #Add more filtering logic.
+
+        # Render results.html with filtered courses
+        return render_template('results.html', courses=filtered_courses)
+
+    return render_template('index.html')

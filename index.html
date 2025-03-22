@@ -1,38 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Firebase Auth</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Recommender</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-  <h1>Firebase Authentication</h1>
+    <div class="container">
+        <h1>Tech Career Course Recommender</h1>
+        <form action="/results" method="POST">
+            <h2>Quiz: What are you interested in?</h2>
 
-  <!-- Sign Up Form -->
-  <div id="signup-form">
-    <h2>Sign Up</h2>
-    <input type="email" id="signup-email" placeholder="Email">
-    <input type="password" id="signup-password" placeholder="Password">
-    <button id="signup-btn">Sign Up</button>
-  </div>
+            <label for="topic">1. What topic are you most interested in?</label>
+            <select id="topic" name="topic" required>
+                <option value="AI/ML">AI/ML</option>
+                <option value="Data Science">Data Science</option>
+                <option value="Ethical Hacking">Ethical Hacking</option>
+                <option value="Cloud Computing">Cloud Computing</option>
+                <option value="Web Development">Web Development</option>
+            </select>
 
-  <!-- Login Form -->
-  <div id="login-form">
-    <h2>Login</h2>
-    <input type="email" id="login-email" placeholder="Email">
-    <input type="password" id="login-password" placeholder="Password">
-    <button id="login-btn">Login</button>
-  </div>
+            <label for="skill_level">2. What is your current skill level?</label>
+            <select id="skill_level" name="skill_level" required>
+                <option value="Beginner">Beginner</option>
+                <option value="Intermediate">Intermediate</option>
+                <option value="Advanced">Advanced</option>
+            </select>
 
-  <!-- Logout Button -->
-  <div id="logout-section" style="display: none;">
-    <h2>Welcome, <span id="user-email"></span></h2>
-    <button id="logout-btn">Logout</button>
-  </div>
+            <label for="language">3. What is your preferred programming language?</label>
+            <select id="language" name="language" required onchange="showOther()">
+                <option value="Python">Python</option>
+                <option value="R">R</option>
+                <option value="JavaScript">JavaScript</option>
+                <option value="Java">Java</option>
+                <option value="Other">Other</option>
+            </select>
+            <input type="text" id="otherLanguage" name="otherLanguage" style="display: none;" placeholder="Specify language">
 
-  <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script></script>
-  <script src="app.js"></script>
+            <label for="data_viz">4. Are you interested in data visualization?</label>
+            <select id="data_viz" name="data_viz" required>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+
+            <label for="ml_interest">5. Are you interested in machine learning?</label>
+            <select id="ml_interest" name="ml_interest" required>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+
+            <label for="cybersecurity">6. Are you interested in cybersecurity?</label>
+            <select id="cybersecurity" name="cybersecurity" required>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+
+            <label for="learning_format">7. What is your preferred learning format?</label>
+            <select id="learning_format" name="learning_format" required>
+                <option value="Video">Video</option>
+                <option value="Text">Text</option>
+                <option value="Interactive">Interactive</option>
+            </select>
+
+            <label for="time_commitment">8. How much time can you dedicate per week?</label>
+            <select id="time_commitment" name="time_commitment" required>
+                <option value="1-5 hours">1-5 hours</option>
+                <option value="5-10 hours">5-10 hours</option>
+                <option value="10+ hours">10+ hours</option>
+            </select>
+
+            <label for="cloud_platforms">9. Are you interested in cloud platforms (e.g., AWS, Azure)?</label>
+            <select id="cloud_platforms" name="cloud_platforms" required>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+
+            <label for="web_dev">10. Are you interested in web development?</label>
+            <select id="web_dev" name="web_dev" required>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
+
+            <button type="submit">Get Recommendations</button>
+        </form>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+        function showOther() {
+            var languageSelect = document.getElementById("language");
+            var otherLanguageInput = document.getElementById("otherLanguage");
+            if (languageSelect.value === "Other") {
+                otherLanguageInput.style.display = "block";
+                otherLanguageInput.required = true;
+            } else {
+                otherLanguageInput.style.display = "none";
+                otherLanguageInput.required = false;
+            }
+        }
+    </script>
 </body>
 </html>
